@@ -3,3 +3,6 @@ dist
 .parcel-cache
 .DS_Store
 *.local
+.env
+.cache
+testFeature.js
