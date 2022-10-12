@@ -88,6 +88,9 @@ app.use((req, res, next) => {
 const userRouter = require('./routes/userRoute')
 
 app.use('/api/v1/users', userRouter)
+app.get('/', (req, res, next) => {
+    res.json("haha")
+})
 
 
 const AppError = require('./utils/appError')
