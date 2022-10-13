@@ -24,6 +24,9 @@ const gameSchema = new mongoose.Schema({
             message: 'Difficulty is either: success, warning, danger, info'
         }
     },
+    status: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
