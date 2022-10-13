@@ -2,6 +2,9 @@ const express = require('express')
 const userController = require('../controllers/userController')
 const authController = require('../controllers/authController')
 
+const wordRouter = require('./wordRoute')
+const historyRouter = require('./historyRoute')
+
 const router = express.Router()
 
 router.post('/signup', authController.signUp)
@@ -20,6 +23,10 @@ router.patch('/updateMyPassword', authController.updatePassword)
 router.patch('/updateMe', userController.uploadUserAvatar, userController.resizeUserAvatar, userController.updateMe)
 router.get('/me', userController.getMe, userController.getUser)
 router.patch('/deleteMe', userController.deleteMe, userController.deleteSoftUser)
+
+// Nested Router
+router.use('/:userId/words', wordRouter)
+router.use('/:userId/histories', historyRouter)
 
 // ------------- admin 
 router.get('/not-active', authController.restrictTo('admin', 'superadmin'), userController.getAllUsersNotActive)

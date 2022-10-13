@@ -86,10 +86,16 @@ app.use((req, res, next) => {
 
 // api
 const userRouter = require('./routes/userRoute')
+const gameRouter = require('./routes/gameRoute')
+const historyRouter = require('./routes/historyRoute')
+const wordRouter = require('./routes/wordRoute')
 
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/games', gameRouter)
+app.use('/api/v1/histories', historyRouter)
+app.use('/api/v1/words', wordRouter)
 app.get('/', (req, res, next) => {
-    res.json("haha")
+    res.json("Home API")
 })
 
 
