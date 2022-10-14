@@ -15,7 +15,7 @@ const historySchema = new mongoose.Schema({
     },
     dateCompleted: {
         type: Date,
-        default: Date.now(),
+        default: Date.now()
     },
     numberOfTest: {
         type: Number,
