@@ -81,10 +81,6 @@ userSchema.pre('save', function (next) {
 })
 
 // Query Middleware
-// userSchema.pre(/^find/, function (next) {
-//     this.find({ active: { $ne: false } })
-//     next()
-// })
 
 // Set up method for Model User (cho đối tượng của class User)
 userSchema.methods.correctPassword = async function (candidatePassword, userPassword) {
@@ -101,14 +97,14 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
     return false
 }
 
-// userSchema.methods.createPasswordResetToken = function () {  // Gửi token đến email người dùng xác nhận đổi password, với hạn là 10phut
-//     const resetToken = crypto.randomBytes(32).toString('hex')
-//     this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex')
-//     this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+userSchema.methods.createPasswordResetToken = function () {  // Gửi token đến email người dùng xác nhận đổi password, với hạn là 10phut
+    const resetToken = crypto.randomBytes(32).toString('hex')
+    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex')
+    this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
-//     // console.log({ resetToken }, this.passwordResetToken)
-//     return resetToken
-// }
+    // console.log({ resetToken }, this.passwordResetToken)
+    return resetToken
+}
 
 
 const User = moongose.model('User', userSchema)

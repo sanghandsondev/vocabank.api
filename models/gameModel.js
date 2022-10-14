@@ -57,6 +57,14 @@ gameSchema.virtual('histories', {
     localField: '_id'
 })
 
+// gameSchema.pre(/^find/, function (next) {
+//     this.populate({
+//         path: 'histories',
+//         select: '-__v'
+//     })
+//     next()
+// })
+
 const Game = mongoose.model('Game', gameSchema)
 
 module.exports = Game 

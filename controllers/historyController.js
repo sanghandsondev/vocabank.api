@@ -9,6 +9,7 @@ const APIFeatures = require('./../utils/apiFeatures')
 exports.createHistory = catchAsync(async (req, res, next) => {
     if (!req.body.game) req.body.game = req.params.gameId
     if (!req.body.user) req.body.user = req.user.id
+    console.log(req.body)
     const newHistory = await History.create(req.body)
     res.status(201).json({
         status: 'success',
@@ -18,10 +19,9 @@ exports.createHistory = catchAsync(async (req, res, next) => {
     })
 })
 exports.getAllHistories = catchAsync(async (req, res, next) => {
-    let filter = {}
+    let filter = { user: req.user.id }  // mặc định lấy lịch sử của người đang đăng nhập
     if (req.params.gameId) filter = { game: req.params.gameId }
     if (req.params.userId) filter = { user: req.params.userId }
-    if (!req.params.userId) filter = { user: req.user.id }
     const features = new APIFeatures(History.find(filter), req.query).filter().sort().limitFields().paginate()
     const histories = await features.query
     res.status(200).json({

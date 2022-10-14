@@ -24,12 +24,6 @@ const historySchema = new mongoose.Schema({
     numberOfWord: {
         type: Number,
         required: [true, 'History mush have a number of words'],
-        validate: {
-            validator: function (val) {
-                return val >= this.numberOfTest
-            }
-        },
-        message: 'Number of word shoud be large than number of test'
     }
 })
 
@@ -37,7 +31,7 @@ const historySchema = new mongoose.Schema({
 historySchema.pre(/^find/, function (next) {
     this.populate({
         path: 'game',
-        select: 'title difficulty'
+        select: 'title difficulty status'
     }).populate({
         path: 'user',
         select: 'name email'
