@@ -3,6 +3,7 @@ const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 
+
 const userSchema = new moongose.Schema({
     name: {
         type: String,
@@ -100,14 +101,14 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
     return false
 }
 
-userSchema.methods.createPasswordResetToken = function () {  // Gửi token đến email người dùng xác nhận đổi password, với hạn là 10phut
-    const resetToken = crypto.randomBytes(32).toString('hex')
-    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex')
-    this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+// userSchema.methods.createPasswordResetToken = function () {  // Gửi token đến email người dùng xác nhận đổi password, với hạn là 10phut
+//     const resetToken = crypto.randomBytes(32).toString('hex')
+//     this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex')
+//     this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
-    // console.log({ resetToken }, this.passwordResetToken)
-    return resetToken
-}
+//     // console.log({ resetToken }, this.passwordResetToken)
+//     return resetToken
+// }
 
 
 const User = moongose.model('User', userSchema)
