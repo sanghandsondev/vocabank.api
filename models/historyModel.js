@@ -14,8 +14,7 @@ const historySchema = new mongoose.Schema({
         required: [true, 'History must belong to an user']
     },
     dateCompleted: {
-        type: Date,
-        default: Date.now()
+        type: String,
     },
     numberOfTest: {
         type: Number,
