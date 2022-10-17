@@ -32,13 +32,14 @@ exports.getAllHistories = catchAsync(async (req, res, next) => {
         }
     })
 })
-// exports.deleteHistory = catchAsync(async (req, res, next) => {
-//     const history = await History.findByIdAndDelete(req.params.id)
-//     if (!history) {
-//         return next(new AppError('No history found with that ID', 404))
-//     }
-//     res.status(204).json({
-//         status: 'success',
-//         data: null
-//     })
-// })
+
+exports.deleteHistory = catchAsync(async (req, res, next) => {
+    const history = await History.findByIdAndDelete(req.params.id)
+    if (!history) {
+        return next(new AppError('No history found with that ID', 404))
+    }
+    res.status(204).json({
+        status: 'success',
+        data: null
+    })
+})

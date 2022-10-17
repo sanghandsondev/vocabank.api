@@ -5,8 +5,8 @@ const authController = require('../controllers/authController')
 
 const router = express.Router({ mergeParams: true })
 
-// router.route('/:id')
-//     .get(historyController.getHistory)
+router.route('/:id')
+    .delete(authController.protect, historyController.deleteHistory)   // KO đưa vào sản phẩm
 
 router.route('/')
     .get(authController.protect, historyController.getAllHistories)
