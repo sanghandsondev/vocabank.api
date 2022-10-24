@@ -17,7 +17,12 @@ const wordSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: [true, 'Word must belong to an user']
-    }
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+        select: false
+    },
 })
 
 // Query middleware
