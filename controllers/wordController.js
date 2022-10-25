@@ -20,7 +20,7 @@ exports.getAllWords = catchAsync(async (req, res, next) => {
     let filter = {}
     if (req.params.userId) filter = { user: req.params.userId }
     if (!req.params.userId) filter = { user: req.user.id }
-    const features = new APIFeatures(Word.find(filter), req.query).filter().sort().limitFields().paginate()
+    const features = new APIFeatures(Word.find(filter), req.query).filter().sort().limitFields()
     const words = await features.query
     res.status(200).json({
         status: 'success',

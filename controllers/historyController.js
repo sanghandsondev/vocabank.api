@@ -22,7 +22,7 @@ exports.getAllHistories = catchAsync(async (req, res, next) => {
     let filter = { user: req.user.id }  // mặc định lấy lịch sử của người đang đăng nhập
     if (req.params.gameId) filter = { game: req.params.gameId }
     if (req.params.userId) filter = { user: req.params.userId }
-    const features = new APIFeatures(History.find(filter), req.query).filter().sort().limitFields().paginate()
+    const features = new APIFeatures(History.find(filter), req.query).filter().sort().limitFields()
     const histories = await features.query
     res.status(200).json({
         status: 'success',

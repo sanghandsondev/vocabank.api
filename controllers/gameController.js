@@ -28,7 +28,7 @@ exports.getGame = catchAsync(async (req, res, next) => {
     })
 })
 exports.getAllGames = catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(Game.find(), req.query).filter().sort().limitFields().paginate()
+    const features = new APIFeatures(Game.find(), req.query).filter().limitFields()
     const games = await features.query
     res.status(200).json({
         status: 'success',
